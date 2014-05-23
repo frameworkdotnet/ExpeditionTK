@@ -1,0 +1,120 @@
+.tk_container {
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.tk_container_footer {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1140px;
+}
+.tk_identitas {
+    padding-top: 20px;
+}
+.tk_fitur_wrapper {
+    padding: 20px;
+    background-color: rgb(248, 248, 248);
+    position: absolute;
+    width: 100%;
+}
+.tab-pane {
+    background: white;
+    padding: 10px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.tk_footer {
+    background: black;
+    text-align: center;
+    padding: 10px;
+    color: white;
+    margin-left: 18px;
+}
+.cek_tarif_result, .cek_status_kirim_result, .tampilkan_agen_result {
+    display:none;
+}
+th {
+    text-align: center;
+}
+
+.tk_logo {
+    max-width: 100%;
+}
+
+.tk_identitas {
+    left:60px;
+    top:200px;
+    color:grey;
+}
+
+.facebook_icon {
+    top:380px;
+    float: left;
+}
+
+.twitter_icon {
+    top:430px;
+    float: left;
+}
+
+.google_icon {
+    top:480px;
+    float: left;
+}
+
+.tk_fb {
+    float:left;
+    margin-top: -3px;
+    margin-left: 5px;
+}
+.tk_twitter {
+    left:0px;
+    float:left;
+    margin-top: -3px;
+    margin-left: 5px;
+}
+
+.tk_google {
+    float:left;
+    margin-top: -3px;
+    margin-left: 5px;
+}
+.clear{
+    clear: both;
+}
+.loading img {
+    position: absolute;
+    right: 10px;
+    top:10px;
+    width: 30px;
+    height: 30px;
+}
+.tk_map:hover {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+#myModal {
+    z-index: 9999999;
+}
+#myModal img {
+    max-width: 100%;
+    -moz-box-shadow: 0 0 5px #ccc;
+    -webkit-box-shadow: 0 0 5px #ccc;
+    box-shadow: 0 0 5px #ccc;
+    border: 5px solid #fff;
+    left: -5px;
+    background: #fff;
+    -webkit-transform: translatez(0);
+    -moz-transform: translatez(0);
+    -ms-transform: translatez(0);
+    -o-transform: translatez(0);
+    transform: translatez(0);
+}
+.modal-dialog {
+    width: 900px!important;
+    max-width: 100%;
+}
+.modal-img {
+    text-align: center;
+}
