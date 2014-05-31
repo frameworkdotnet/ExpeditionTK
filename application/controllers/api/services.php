@@ -120,22 +120,43 @@ class Services extends REST_Controller {
         }
     }
 
+    /**
+     * Web Service YUDI
+     */
     public function laporan_post() {
         if (!$this->post('onlineshop')) {
             $this->response(NULL, 400);
         } else {
             $onlineShop = $this->post('onlineshop');
 
-//            $this->load->model('Pengiriman');
-//            $laporan = Pengiriman::laporPengirimanBerhasil($onlineShop);
-            $laporan = $onlineShop;
+            $this->load->model('Expedition');
+            $respon = Expedition::laporPengirimanBerhasil($onlineShop);
 
-            if ($laporan !== null) {
-                $this->response($laporan, 200); // 200 being the HTTP response code
+            if ($respon !== null) {
+                $this->response($respon, 200); // 200 being the HTTP response code
             } else {
                 $this->response(array('error' => 'Laporan tidak ditemukan'), 204);
             }
         }
-        
+    }
+    
+    /**
+     * Web Service ARIF
+     */
+    public function saldo_get() {
+        if (!$this->get('id')) {
+            $this->response(NULL, 400);
+        } else {
+            $idToko = $this->get('id');
+
+            $this->load->model('Expedition');
+            $respon = Expedition::saldoDariArif($idToko);
+
+            if ($respon !== null) {
+                $this->response($respon, 200); // 200 being the HTTP response code
+            } else {
+                $this->response(array('error' => 'Laporan tidak ditemukan'), 204);
+            }
+        }
     }
 }

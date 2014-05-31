@@ -103,9 +103,22 @@ class Expedition extends CI_Model {
     }
     
     public function laporPengirimanBerhasil($onlineShop) {
-        $pengiriman = new Pengiriman();
-        $laporPengirimanBerhasil = new laporPengirimanBerhasil();
-        $laporPengirimanBerhasil->onlineshop = $onlineShop;
-        print_r($pengiriman->laporPengirimanBerhasil($laporPengirimanBerhasil));
+        require 'VendorWSService.php';
+        $vendorWSService = new VendorWSService();
+        $vendorWSService->laporPengirimanBerhasil($onlineShop);
+        
+        $data = array(
+            'respon' => 'tidak ada respon dari server, mungkin berhasil'
+        );
+        return $data;
+    }
+    
+    public function saldoDariArif($idToko) {
+        require 'PembayaranService.php';
+        $pembayaranService = new PembayaranService();
+        $getTokoById = new getTokoById();
+        $getTokoById->idToko = $idToko;
+        $data = $pembayaranService->getTokoById($getTokoById)->return;
+        return $data;
     }
 }

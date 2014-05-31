@@ -5,6 +5,7 @@ $(document).ready(function() {
     loadingGif(false);
     initUpdatebarang();
     initUpdateBarang2();
+    initCekSaldo();
 });
 
 $(document).ready(function() {
@@ -48,10 +49,9 @@ function initForm() {
 function showAgen() {
     loadingGif(true);
     var kota = $("select[name=kota]").val();
-    $.get(apiRestUrl + "agens/kota/Bandung/format/json", {
-        kota: kota
+    $.get(apiRestUrl + "agens/kota/" + kota + "/format/json", {
     }, function(data, status) {
-        if(status === "success") {
+        if (status === "success") {
             $(".tampilkan_agen_result").css("display", "block");
             if (data !== null) {
                 $(".tampilkan_agen_result").html(tableHTML(data));
@@ -68,7 +68,7 @@ function initShowMap() {
         var latitude = $(this).data("latitude");
         var longitude = $(this).data("longitude");
         $(".modal-title").html("Peta " + $(this).html());
-        $.get(apiRestUrl + "map/longitude/"+longitude+"/latitude/"+latitude+"/format/json", {
+        $.get(apiRestUrl + "map/longitude/" + longitude + "/latitude/" + latitude + "/format/json", {
         }, function(data, status) {
             $(".tampilkan_agen_result").css("display", "block");
             if (data !== null) {
@@ -134,10 +134,10 @@ function showTarif() {
     var berat = $("input[name=berat]").val();
     var paket = $("select[name=paket_pengiriman]").val();
     if (validateNumber("input[name=berat]")) {
-        $.get(apiRestUrl + "tarif/kota_penerima/"+ kotaPenerima +"/berat/"+ berat +"/kota_pengirim/"+ kotaPengirim +"/paket/"+ paket +"/format/json", {
+        $.get(apiRestUrl + "tarif/kota_penerima/" + kotaPenerima + "/berat/" + berat + "/kota_pengirim/" + kotaPengirim + "/paket/" + paket + "/format/json", {
         }, function(data, status) {
             $(".cek_tarif_result").css("display", "block");
-            if(status === "success") {
+            if (status === "success") {
                 if (berat !== "") {
                     $(".cek_tarif_result").html("Biaya paket Rp. " + nilaiRupiah(data.tarif));
                 } else {
@@ -192,7 +192,7 @@ function initUpdatebarang() {
             status: $("select[name=status]").val()
         }, function(data, status) {
             var respon = "Tidak berhasil diupdate";
-            if(status === "success") {
+            if (status === "success") {
                 respon = "Berhasil diupdate";
             }
             $("input[name=id]").val("");
@@ -205,11 +205,30 @@ function initUpdatebarang() {
 
 function initUpdateBarang2() {
     $("button[name=tandai2]").click(function() {
+        loadingGif(true);
         $.post(apiRestUrl + "laporan/format/json", {
             onlineshop: $("input[name=onlineshop]").val()
         }, function(data, status) {
             $(".cek_tarif_result").css("display", "block");
-            $(".cek_tarif_result").html(data);
+            $(".cek_tarif_result").html(data.respon);
+            loadingGif(false);
+        });
+    });
+}
+
+function initCekSaldo() {
+    $("button[name=cek_saldo]").click(function() {
+        loadingGif(true);
+        $(".cek_saldo_respon").html();
+        $(".cek_saldo_respon").css("display", "block");
+        $.get(apiRestUrl + "saldo/id/" + 1 + "/format/json", {
+        }, function(data, status) {
+            $(".cek_saldo_respon").css("display", "block");
+            var html = "<b>Nama</b>: " + data.nama + "<br/>";
+            html += "<b>Saldo</b>: " + data.matauang.idMataUang + " "
+                    + nilaiRupiah(data.jumlahUang) + "<br/>"
+                    + "<b>Mata uang</b>: " + data.matauang.namaMataUang;
+            $(".cek_saldo_respon").html(html);
             loadingGif(false);
         });
     });

@@ -93,6 +93,7 @@ $this->load->helper('url');
                         <ul class="nav nav-tabs">
                             <li class="active"><a class="tab_tarif" href="#home" data-toggle="tab">Tandai Pengiriman</a></li>
                             <li><a class="tab_status" href="#profile" data-toggle="tab">Lapor Pengiriman Berhasil ke Yudi</a></li>
+                            <li><a class="tab_status" href="#saldo" data-toggle="tab">Saldo</a></li>
                         </ul>
 
                         <!-- Tab panes -->
@@ -141,6 +142,22 @@ $this->load->helper('url');
                                     </div>
                                 </div>
                                 <div class="alert alert-info cek_tarif_result"></div>
+                            </div>
+                            <div class="tab-pane" id="saldo">
+                                <div class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <label for="inputEmail3" class="col-sm-3 control-label">ID</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="saldo" class="form-control" id="inputEmail3" placeholder="">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-3 col-sm-9">
+                                            <button type="button" name="cek_saldo" class="btn btn-info">Cek Saldo</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="alert alert-info cek_saldo_respon"></div>
                             </div>
                         </div>
                     </div>

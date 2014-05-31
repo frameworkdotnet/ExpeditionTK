@@ -30,7 +30,7 @@
     color: white;
     margin-left: 18px;
 }
-.cek_tarif_result, .cek_status_kirim_result, .tampilkan_agen_result {
+.cek_tarif_result, .cek_status_kirim_result, .tampilkan_agen_result, .cek_saldo_respon {
     display:none;
 }
 th {
